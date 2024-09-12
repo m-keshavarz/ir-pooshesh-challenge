@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "IranSans";
+  src: url("./IRANSansXV.woff") format("woff-variations"),
+    url("./IRANSansXV.woff") format("woff");
+  font-weight: 100 900;
+  font-display: fallback;
+}
