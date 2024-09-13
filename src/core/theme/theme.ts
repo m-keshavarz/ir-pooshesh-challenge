@@ -9,6 +9,7 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#048E9E",
+      light: "#909090",
     },
     error: {
       main: "#CB1A52",

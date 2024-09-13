@@ -10,6 +10,7 @@ import { prefixer } from "stylis";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import GlobalStyles from "@mui/material/GlobalStyles";
+import Layout from "@components/layout";
 
 const queryClient = new QueryClient();
 
@@ -32,12 +33,14 @@ const Providers = () => {
       <QueryClientProvider client={queryClient}>
         <CacheProvider value={cacheRtl}>
           <ThemeProvider theme={theme}>
-            <BrowserRouter>
-              <Routes>
-                <Route element={<Otp />} path="/" />
-                <Route element={<Registration />} path="/registration" />
-              </Routes>
-            </BrowserRouter>
+            <Layout>
+              <BrowserRouter>
+                <Routes>
+                  <Route element={<Otp />} path="/" />
+                  <Route element={<Registration />} path="/registration" />
+                </Routes>
+              </BrowserRouter>
+            </Layout>
           </ThemeProvider>
         </CacheProvider>
       </QueryClientProvider>
