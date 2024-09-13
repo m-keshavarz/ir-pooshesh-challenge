@@ -23,6 +23,8 @@ export const arrowForwardStyles: SxProps = {
   height: "1,5rem",
   color: "white",
   cursor: "pointer",
+  position: "absolute",
+  left: "1.5rem",
 };
 
 export const logoStyles: CSSProperties = {
@@ -33,7 +35,7 @@ export const logoStyles: CSSProperties = {
 };
 
 export const mainBoxStyles: SxProps = {
-  marginTop: "2rem",
+  marginTop: "4rem",
   backgroundColor: "white",
   boxShadow: "0 0 5px 3px rgba(0, 0, 0, .1)",
   borderRadius: ".75rem",

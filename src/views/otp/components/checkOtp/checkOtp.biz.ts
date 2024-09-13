@@ -7,7 +7,8 @@ import { TcheckOtpProps } from "./checkOtp.types";
 const useCheckOtp = (props: TcheckOtpProps) => {
   const { phoneNumber, sendCode } = props;
   const [timeLeft, setTimeLeft] = useState<number>(120);
-  const [error, setError] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [errorMsg, setErrorMsg] = useState<string>("");
   const navigate = useNavigate();
 
   const { isPending, mutate } = useMutation({
@@ -25,11 +26,13 @@ const useCheckOtp = (props: TcheckOtpProps) => {
         })
         .then((res) => {
           if (res.data.response === "OK") {
-            navigate("/registration");
+            navigate("/registration", { state: phoneNumber });
           }
         })
         .catch(() => {
-          setError(true);
+          console.log("here");
+          setErrorMsg("کد ورود اشتباه است.");
+          setOpen(true);
         }),
   });
 
@@ -55,7 +58,15 @@ const useCheckOtp = (props: TcheckOtpProps) => {
     return () => clearInterval(interval);
   }, [timeLeft]);
 
-  return { handleRetry, handleSubmit, isPending, error, timeLeft };
+  return {
+    handleRetry,
+    handleSubmit,
+    isPending,
+    errorMsg,
+    open,
+    setOpen,
+    timeLeft,
+  };
 };
 
 export default useCheckOtp;

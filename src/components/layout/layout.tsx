@@ -9,12 +9,21 @@ import {
   mainBoxStyles,
   topBoxStyles,
 } from "./layout.styles";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Layout = ({ children }: { children: ReactNode }) => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   return (
     <Box sx={containerStyles}>
       <Box sx={topBoxStyles}>
-        <ArrowForwardIcon sx={arrowForwardStyles} />
+        {pathname !== "/" && (
+          <ArrowForwardIcon
+            sx={arrowForwardStyles}
+            onClick={() => navigate(-1)}
+          />
+        )}
         <img src={DayLogo} style={logoStyles} />
         <Box component="main" sx={mainBoxStyles}>
           {children}

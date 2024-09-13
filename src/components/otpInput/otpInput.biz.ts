@@ -41,7 +41,7 @@ const useOtpInput = (props: TinputProps) => {
 
   useEffect(() => {
     if (inputRef.current) {
-      inputRef.current[0].focus();
+      inputRef.current[0]?.focus();
     }
   }, []);
 

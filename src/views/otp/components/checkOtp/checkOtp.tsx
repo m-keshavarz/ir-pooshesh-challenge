@@ -13,12 +13,20 @@ import { StepsEnum } from "@views/otp/otp.types";
 import { formatTime } from "@core/utils/formatTime";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import useCheckOtp from "./checkOtp.biz";
+import MySnackBar from "@components/snackBar/snackBar";
 
 const CheckOtp = (props: TcheckOtpProps) => {
   const { phoneNumber, setStep, createCodePending } = props;
 
-  const { error, handleRetry, handleSubmit, isPending, timeLeft } =
-    useCheckOtp(props);
+  const {
+    errorMsg,
+    open,
+    setOpen,
+    handleRetry,
+    handleSubmit,
+    isPending,
+    timeLeft,
+  } = useCheckOtp(props);
 
   return (
     <>
@@ -30,7 +38,7 @@ const CheckOtp = (props: TcheckOtpProps) => {
         />
         {`98${phoneNumber}+`}
       </Typography>
-      <OTPInput hasError={error} onComplete={handleSubmit} />
+      <OTPInput hasError={!!errorMsg} onComplete={handleSubmit} />
       <Typography
         sx={{
           marginTop: "1.5rem",
@@ -61,6 +69,11 @@ const CheckOtp = (props: TcheckOtpProps) => {
       >
         ادامه
       </LoadingButton>
+      <MySnackBar
+        open={open}
+        handleClose={() => setOpen(false)}
+        message={errorMsg}
+      />
     </>
   );
 };

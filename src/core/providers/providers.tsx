@@ -11,6 +11,7 @@ import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import Layout from "@components/layout";
+import Report from "@views/report";
 
 const queryClient = new QueryClient();
 
@@ -33,14 +34,15 @@ const Providers = () => {
       <QueryClientProvider client={queryClient}>
         <CacheProvider value={cacheRtl}>
           <ThemeProvider theme={theme}>
-            <Layout>
-              <BrowserRouter>
+            <BrowserRouter>
+              <Layout>
                 <Routes>
                   <Route element={<Otp />} path="/" />
                   <Route element={<Registration />} path="/registration" />
+                  <Route element={<Report />} path="/report" />
                 </Routes>
-              </BrowserRouter>
-            </Layout>
+              </Layout>
+            </BrowserRouter>
           </ThemeProvider>
         </CacheProvider>
       </QueryClientProvider>
